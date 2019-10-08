@@ -1,0 +1,87 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">Todo App</a>
+    <button
+      type="button"
+      class="navbar-toggler"
+      data-toggle="collapse"
+      data-target="#navbarCollapse"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav">
+        <a
+          class="nav-item nav-link "
+          routerLink="/users"
+          routerLinkActive="active"
+          >Users</a
+        >
+        <a class="nav-item nav-link" routerLink="/todos" routerLinkActive="active"
+          >Todos</a
+        >
+      </div>
+      <form class="form-inline ml-auto">
+        <input
+          type="text"
+          name="searchText"
+          class="form-control mr-sm-2"
+          placeholder="Search"
+          [(ngModel)]="searchText"
+          (change)="onSearch()"
+        />
+      </form>
+    </div>
+  </nav>
+  <div class="container-flex">
+    <div class="jumbotron"></div>
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Todos Table</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/todo/addTodo" routerLinkActive="active">Add todo</a>
+      </li>
+    </ul>
+    <div class="container">
+      <span *ngIf="filteredData.length === 0">No result</span>
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Owner</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let todo of filteredData">
+            <td>{{ todo.id }}</td>
+            <td>{{ todo.name }}</td>
+            <td>{{ todo.description }}</td>
+            <td>{{ todo.status }}</td>
+            <td>{{ todo.owner }}</td>
+            <td>
+              <a><button class="btn btn-dark">Delete</button></a>
+              <a><button class="btn btn-dark">Edit</button></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <nav>
+    <ul class="pagination justify-content-center">
+      <li class="page-item"><a href="#" class="page-link">Previous</a></li>
+      <li class="page-item"><a href="#" class="page-link">1</a></li>
+      <li class="page-item"><a href="#" class="page-link">2</a></li>
+      <li class="page-item"><a href="#" class="page-link">3</a></li>
+      <li class="page-item"><a href="#" class="page-link">4</a></li>
+      <li class="page-item"><a href="#" class="page-link">5</a></li>
+      <li class="page-item"><a href="#" class="page-link">Next</a></li>
+    </ul>
+  </nav>
+  

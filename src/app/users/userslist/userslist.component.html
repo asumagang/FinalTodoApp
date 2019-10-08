@@ -1,0 +1,148 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <a href="#" class="navbar-brand">Todo App</a>
+  <button
+    type="button"
+    class="navbar-toggler"
+    data-toggle="collapse"
+    data-target="#navbarCollapse"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <div class="navbar-nav">
+      <a
+        class="nav-item nav-link active"
+        routerLink="/users"
+        routerLinkActive="active"
+        >Users</a
+      >
+      <a class="nav-item nav-link" routerLink="/todos" routerLinkActive="active"
+        >Todos</a
+      >
+    </div>
+    <form class="form-inline ml-auto">
+      <input
+        type="text"
+        name="searchText"
+        class="form-control mr-sm-2"
+        placeholder="Search"
+        [(ngModel)]="searchText"
+        (change)="onSearch()"
+      />
+    </form>
+  </div>
+</nav>
+<div class="container-flex">
+  <div class="jumbotron"></div>
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" href="#">Users Table</a>
+    </li>
+    <li class="nav-item">
+      <app-adduser-modal></app-adduser-modal>
+    </li>
+  </ul>
+  <div class="container">
+    <span *ngIf="filteredData.length === 0">No result</span>
+    <table class="table table-sm" *ngIf="filteredData.length > 1">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Occupation</th>
+          <th></th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of filteredData">
+          <td>{{ user.id }}</td>
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.occupation }}</td>
+          <td>
+            <a routerLink="/todos"
+              ><button class="btn btn-dark">View todos</button></a
+            >
+          </td>
+          <td>
+            <app-updateuser-modal></app-updateuser-modal>
+            <a (click)="onDelete(user)"
+              ><button class="btn btn-dark">Delete</button>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td class="p-2" colspan="6">
+            Showing {{ filteredData.length }} results of {{ userData.length }}.
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+<nav>
+  <ul class="pagination justify-content-center">
+    <li class="page-item"><a href="#" class="page-link">Previous</a></li>
+    <li class="page-item"><a href="#" class="page-link">1</a></li>
+    <li class="page-item"><a href="#" class="page-link">2</a></li>
+    <li class="page-item"><a href="#" class="page-link">3</a></li>
+    <li class="page-item"><a href="#" class="page-link">4</a></li>
+    <li class="page-item"><a href="#" class="page-link">5</a></li>
+    <li class="page-item"><a href="#" class="page-link">Next</a></li>
+  </ul>
+</nav>
+
+<div
+  class="modal fade"
+  id="exampleModalCenter"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header ">
+        <h5 class="modal-title text-center" id="exampleModalCenterTitle">
+          Update User
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body ">
+        <form>
+          <div class="form-group">
+            <label>Firstname:</label>
+            <input class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Lastname:</label>
+            <input class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Occupation:</label>
+            <input class="form-control" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-dark ">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
