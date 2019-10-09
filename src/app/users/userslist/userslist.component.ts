@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
-
+import { DeleteuserModalComponent } from '../deleteuser-modal/deleteuser-modal.component';
+import { NgbModalConfig, NgbModal, NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 @Component({
   selector: 'app-userslist',
   templateUrl: './userslist.component.html',
@@ -8,7 +9,7 @@ import { UsersService } from '../users.service';
 })
 export class UserslistComponent implements OnInit {
 
-  constructor(private usersService: UsersService) { 
+  constructor(private usersService: UsersService, private modal: NgbModal) { 
     
     this.filteredData = this.usersService.getUsers();
   }
@@ -45,6 +46,16 @@ export class UserslistComponent implements OnInit {
   onDelete(user) {
     console.log('Delete');
     console.log(user);
+  }
+  opendeletemodal(user){
+    const modalref =this.modal.open(DeleteuserModalComponent);
+    modalref.componentInstance.user =user;
+    modalref.result.then((result)=>{
+      if(result){
+        this.usersService.deleteUser(user.id);
+      }
+    })
+
   }
 
 }

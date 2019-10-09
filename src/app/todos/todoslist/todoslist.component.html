@@ -40,11 +40,11 @@
         <a class="nav-link active" href="#">Todos Table</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/todo/addTodo" routerLinkActive="active">Add todo</a>
+        <app-addtodo-modal></app-addtodo-modal>
       </li>
     </ul>
     <div class="container">
-      <span *ngIf="filteredData.length === 0">No result</span>
+       <span *ngIf="filteredData.length === 0">No result</span> 
       <table class="table table-sm">
         <thead>
           <tr>
@@ -84,4 +84,5 @@
       <li class="page-item"><a href="#" class="page-link">Next</a></li>
     </ul>
   </nav>
+  
   
