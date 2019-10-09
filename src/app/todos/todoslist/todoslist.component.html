@@ -64,8 +64,10 @@
             <td>{{ todo.status }}</td>
             <td>{{ todo.owner }}</td>
             <td>
-              <a><button class="btn btn-dark">Delete</button></a>
-              <a><button class="btn btn-dark">Edit</button></a>
+              <a><button class="btn btn-dark">Update</button></a>
+              <button class="btn btn-dark ml-2" (click)="opendeletetodomodal(todo)" >
+                  Delete 
+              </button>
             </td>
           </tr>
         </tbody>

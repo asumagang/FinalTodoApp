@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router, ParamMap } from "@angular/router";
 import { TodosService } from "../todos.service";
+import { DeletetodoModalComponent } from '../deletetodo-modal/deletetodo-modal.component';
+import { NgbModalConfig, NgbModal, NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: "app-todoslist",
@@ -8,7 +10,7 @@ import { TodosService } from "../todos.service";
   styleUrls: ["./todoslist.component.scss"]
 })
 export class TodoslistComponent implements OnInit {
-  constructor(private todosService: TodosService) {
+  constructor(private todosService: TodosService,  private modal: NgbModal) {
     this.filteredData = this.todosService.getTodos();
   }
 
@@ -34,5 +36,16 @@ export class TodoslistComponent implements OnInit {
     } else {
       this.filteredData = this.todoData;
     }
+  }
+
+  opendeletetodomodal(todo){
+    const modalref= this.modal.open(DeletetodoModalComponent);
+    modalref.componentInstance.todo =todo;
+    modalref.result.then((result)=>{
+      if(result){
+        this.todosService.deleteTodo(todo.id);
+      }
+    })
+
   }
 }

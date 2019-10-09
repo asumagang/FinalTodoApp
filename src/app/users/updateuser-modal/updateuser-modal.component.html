@@ -1,34 +1,29 @@
-<ng-template #content let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Update User</h4>
-  </div>
-  <div class="modal-body">
-    <form>
-      <div class="form-group">
-        <label>Firstname:</label>
-        <input class="form-control" />
-      </div>
-      <div class="form-group">
-        <label>Lastname:</label>
-        <input class="form-control" />
-      </div>
-      <div class="form-group">
-        <label>Occupation:</label>
-        <input class="form-control" />
-      </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal"  aria-label="Close"
-    (click)="d('Cross click')">
-      Cancel
-    </button>
-    <button type="button" class="btn btn-dark " (click)="c('Save click')">
-      Save
-    </button>
-  </div>
-</ng-template>
-
-<button class="btn btn-dark" (click)="open(content)">
-  Update User
-</button>
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Update User</h4>
+</div>
+<div class="modal-body">
+  <form #Uuser="ngForm" (ngSubmit)="updateUser(Uuser.value)">
+    <div class="form-group">
+      <label>Firstname:</label>
+      <input class="form-control"  name="firstName" [(ngModel)]="firstName" />
+    </div>
+    <div class="form-group">
+      <label>Lastname:</label>
+      <input class="form-control" name="lastName" [(ngModel)]="lastName"/>
+    </div>
+    <div class="form-group">
+      <label>Occupation:</label>
+      <input class="form-control" name="occupation" [(ngModel)]="occupation"/>
+    </div>
+    <button
+    type="button"
+    class="btn btn-secondary"
+    (click)="close()"
+  >
+    Cancel
+  </button>
+  <button type="submit" class="btn btn-dark ">
+    Save
+  </button>
+  </form>
+</div>

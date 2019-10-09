@@ -40,7 +40,7 @@
       <a class="nav-link active" href="#">Users Table</a>
     </li>
     <li class="nav-item">
-      <app-adduser-modal></app-adduser-modal>
+      <a class="nav-link active" (click)="openmodal()">Add User</a>
     </li>
   </ul>
   <div class="container">
@@ -52,25 +52,21 @@
           <th>First Name</th>
           <th>Last Name</th>
           <th>Occupation</th>
-          <!-- <th></th> -->
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of filteredData">
+        <tr *ngFor="let user of userData">
           <td>{{ user.id }}</td>
           <td>{{ user.firstName }}</td>
           <td>{{ user.lastName }}</td>
           <td>{{ user.occupation }}</td>
-          <!-- <td>
-            <a routerLink="/todos"
-              ><button class="btn btn-dark">View todos</button></a
-            >
-          </td> -->
           <td>
-            <app-updateuser-modal></app-updateuser-modal>
+            <button class="btn btn-dark" (click)="openmodal(user)">
+                Update 
+            </button>
             <button class="btn btn-dark ml-2" (click)="opendeletemodal(user)" >
-                Delete User
+                Delete 
             </button>
           </td>
         </tr>

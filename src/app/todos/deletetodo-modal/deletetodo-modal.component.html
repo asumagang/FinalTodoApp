@@ -1,0 +1,20 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Delete Todo</h4>
+</div>
+<div class="modal-body">
+  <p class="text-center text-danger">Do you want to delete todo?</p>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-secondary"
+    data-dismiss="modal"
+    aria-label="Close"
+    (click)="d('Cross click')"
+  >
+    Cancel
+  </button>
+  <button type="button" class="btn btn-dark " (click)="deleteTodo(todo)">
+    Delete
+  </button>
+</div>

@@ -48,25 +48,37 @@ export class UsersService {
         "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
     }
   ];
-  id:number;
+  id: number;
+  firstname: string;
+  lastname: string;
+  occupation: string;
+
   getUsers() {
     return this.userData;
   }
-  addedusers:any;
-  addUsers(user:Users) {
-  for(let i=1;i<=this.userData.length+1;i++){
-    this.id=i;
+  addedusers: any;
+  newusers: any;
+
+  addUsers(user: Users) {
+    console.log("aadddddddd")
+    for (let i = 1; i <= this.userData.length + 1; i++) {
+      this.id = i;
+    }
+    user.id = this.id;
+    this.userData.push({
+      id: this.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      occupation: user.occupation,
+      profilePicture:null
+    })
+    return this.userData;
   }
-  user.id=this.id;
-  this.addedusers =this.getUsers().push(user);
-    return this.addedusers;
-  }
-  deleteUser(id){
-    for(let i=0;i< this.userData.length;i++){
-      if(this.userData[i].id === id){
-        this.userData.splice(i,1);
+  deleteUser(id) {
+    for (let i = 0; i < this.userData.length; i++) {
+      if (this.userData[i].id === id) {
+        this.userData.splice(i, 1);
       }
     }
-   
   }
 }

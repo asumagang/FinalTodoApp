@@ -12,28 +12,28 @@ id:number;
       name:"Kaon",
       description:"munganga",
       status:"pending",
-      owner:"1"
+      owner:"Adrian"
     },
     {
       id:2,
       name:"Tulog",
       description:"munganga",
       status:"done",
-      owner:"2"
+      owner:"JR"
     },
     {
       id:3,
       name:"Libang",
       description:"munganga",
       status:"pending",
-      owner:"3"
+      owner:"Adrian"
     },
     {
       id:4,
       name:"Magbuhat Assignment",
       description:"12:00 AM sa gabie",
       status:"pending",
-      owner:"1"
+      owner:"Vanessa"
     }
   ]
 getTodos(){
@@ -47,6 +47,15 @@ addedtodos:any;
     todo.id=this.id;
    this.addedtodos =this.getTodos().push(todo);
     return this.addedtodos;
+  }
+
+  deleteTodo(id){
+    for(let i=0;i< this.todoData.length;i++){
+      if(this.todoData[i].id === id){
+        this.todoData.splice(i,1);
+      }
+    }
+   
   }
   
 }

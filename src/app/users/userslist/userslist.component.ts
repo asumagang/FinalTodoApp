@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
 import { DeleteuserModalComponent } from '../deleteuser-modal/deleteuser-modal.component';
 import { NgbModalConfig, NgbModal, NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { UpdateuserModalComponent } from '../updateuser-modal/updateuser-modal.component';
 @Component({
   selector: 'app-userslist',
   templateUrl: './userslist.component.html',
@@ -15,7 +16,7 @@ export class UserslistComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userData = this.usersService.getUsers();
+    this.loadata();
   }
   searchText:string;
 
@@ -37,6 +38,10 @@ export class UserslistComponent implements OnInit {
       this.filteredData = this.userData;
     }
   }
+  
+  loadata(){
+    this.userData = this.usersService.getUsers();
+  }
 
   onUpdate(user) {
     console.log('Update');
@@ -56,6 +61,15 @@ export class UserslistComponent implements OnInit {
       }
     })
 
+  }
+  openmodal(user){
+    if(user){
+      const modalref =this.modal.open(UpdateuserModalComponent);
+      modalref.componentInstance.user =user; 
+      this.usersService.deleteUser(user.id);   
+    }else{
+      this.modal.open(UpdateuserModalComponent);
+    }
   }
 
 }

@@ -1,5 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import { NgbModalConfig, NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { Component, OnInit, Input } from "@angular/core";
+import { NgbModalConfig, NgbModal, NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { Users } from '../users';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: "app-updateuser-modal",
@@ -8,12 +10,37 @@ import { NgbModalConfig, NgbModal } from "@ng-bootstrap/ng-bootstrap";
   providers: [NgbModalConfig, NgbModal]
 })
 export class UpdateuserModalComponent implements OnInit {
-  constructor(config: NgbModalConfig, private modalService: NgbModal) {
+  constructor(config: NgbModalConfig, private modalService: NgbActiveModal,private usersService:UsersService) {
     config.backdrop = "static";
     config.keyboard = false;
   }
-  open(content) {
-    this.modalService.open(content);
+ 
+  @Input()
+  user: Users;
+
+  firstName:string;
+  lastName:string;
+  occupation:string;
+  id:number;
+
+  ngOnInit() {
+    if(this.user){
+      this.firstName= this.user.firstName;
+      this.lastName = this.user.lastName;
+      this.occupation = this.user.occupation
+    }
+
   }
-  ngOnInit() {}
+
+ 
+  close(){
+    this.modalService.close();
+  }
+  updateUser(user){
+    console.log(user);
+      this.usersService.addUsers(user);
+      console.log(this.usersService.getUsers()) ;
+      this.close();
+  }
+
 }
