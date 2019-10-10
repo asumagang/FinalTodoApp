@@ -1,7 +1,7 @@
 export interface Users {
-    id:number;
+    id?:number;
     firstName: string,
     lastName: string,
     occupation: string,
-    profilePicture: string
+    profilePicture?: string
 }

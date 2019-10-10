@@ -66,10 +66,18 @@ export class UserslistComponent implements OnInit {
     if(user){
       const modalref =this.modal.open(UpdateuserModalComponent);
       modalref.componentInstance.user =user; 
-      this.usersService.deleteUser(user.id);   
+      modalref.result.then((result)=>{
+        if(result){
+          this.filteredData = this.usersService.getUsers(); 
+        }
+      })
+   
     }else{
       this.modal.open(UpdateuserModalComponent);
+      console.log(user);
+
     }
+   
   }
 
 }

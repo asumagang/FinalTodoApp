@@ -72,12 +72,21 @@ export class UsersService {
       occupation: user.occupation,
       profilePicture:null
     })
-    return this.userData;
+    console.log(user);
+    
   }
   deleteUser(id) {
     for (let i = 0; i < this.userData.length; i++) {
       if (this.userData[i].id === id) {
         this.userData.splice(i, 1);
+      }
+    }
+  }
+  updateUser(user){
+    for (let i = 0; i < this.userData.length; i++) {
+      if (this.userData[i].id === user.id) {
+        this.userData.splice(i, 1,user);
+        console.log(this.userData[i])
       }
     }
   }
